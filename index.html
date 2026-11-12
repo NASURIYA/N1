@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASURIYA // Pixel Dev Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+
+    <header class="pixel-box">
+        <div class="header-top">
+            <div class="brand">
+                <h1>NASURIYA<span class="cursor">_</span></h1>
+                <p class="subtitle">systems // code // cats</p>
+            </div>
+            <div class="cat-stage">
+                <canvas id="catCanvas" width="128" height="96"></canvas>
+                <div class="pet-hint" id="petHint">[ click cat to pet ]</div>
+            </div>
+        </div>
+        <nav class="filter-bar" id="filterBar">
+            <button class="pixel-btn active" data-tag="all">ALL_LOGS</button>
+            <button class="pixel-btn" data-tag="systems">SYSTEMS</button>
+            <button class="pixel-btn" data-tag="web">WEB_DEV</button>
+            <button class="pixel-btn" data-tag="hardware">HARDWARE</button>
+        </nav>
+    </header>
+
+    <main id="postFeed" class="feed-grid"></main>
+
+    <!-- Reader Modal -->
+    <div id="postModal" class="modal hidden">
+        <div class="modal-content pixel-box">
+            <div class="modal-header">
+                <span id="modalTag" class="tag"></span>
+                <button id="closeModal" class="pixel-btn danger">X</button>
+            </div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDate" class="meta"></p>
+            <div id="modalBody" class="post-body"></div>
+        </div>
+    </div>
+
+    <footer class="pixel-box">
+        <p>BUILT BY NASURIYA // 100% PURE VANILLA STACK // PURR_OS v1.4</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
