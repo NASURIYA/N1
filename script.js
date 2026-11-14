@@ -1,68 +1,141 @@
-const blogFeed = document.getElementById('blog-feed');
-const canvas = document.getElementById('pixel-cat');
-const ctx = canvas.getContext('2d');
-
-// Hacker News Style Articles
-const posts = [
-    { title: "Rust vs C++ for System Programming", date: "Oct 12", tag: "DevOps" },
-    { title: "Why I Love CSS Grid", date: "Sep 05", tag: "Frontend" },
-    { title: "JavaScript Async/Await Deep Dive", date: "Aug 22", tag: "Backend" },
-    { title: "Building a CLI Tool in Go", date: "Jul 14", tag: "Golang" },
-    { title: "The Future of WebAssembly", date: "Jun 30", tag: "WebTech" },
-    { title: "Optimizing React Performance", date: "May 18", tag: "React" },
-    { title: "Docker Networking Explained", date: "Apr 05", tag: "DevOps" },
-    { title: "Python for Data Science", date: "Mar 22", tag: "Data" },
-    { title: "Serverless Architecture Patterns", date: "Feb 14", tag: "Cloud" },
-    { title: "Understanding TCP Handshake", date: "Jan 08", tag: "Networking" }
-];
-
-// Render Posts
-posts.forEach(post => {
-    const div = document.createElement('article');
-    div.innerHTML = `<h2>${post.title}</h2><span class="tag">${post.tag}</span><p>Posted on ${post.date}</p>`;
-    blogFeed.appendChild(div);
-});
-
-// Pixel Cat Animation Logic
-let frame = 0;
-const catMap = [
-    "  .--.  ",
-    "/|     |\\",
-    "| (o) (o)|",
-    "|   ^    |",
-    "\\_______/",
-];
-
-function drawCat() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Blink eyes randomly
-    const blink = Math.random() > 0.95;
-    let eyeChar = "o";
-    if (blink) eyeChar = "_";
-
-    // Draw simple pixel art based on frame
-    ctx.fillStyle = "#ff9ff3"; // Pink cat
-    for(let y=0; y<catMap.length; y++) {
-        for(let x=0; x<catMap[y].length; x++) {
-            if(catMap[y][x] !== ' ') {
-                const px = (canvas.width / 2) - 4 + x;
-                const py = (canvas.height / 2) - 3 + y;
-                ctx.fillRect(px, py, 4, 4);
-            }
-        }
-    }
-
-    // Tail wagging effect
-    if (frame % 10 === 0) {
-        ctx.fillStyle = "#ff9ff3";
-        ctx.fillRect(180, 160, 4, 20); 
-    } else {
-        ctx.clearRect(180, 160, 4, 20);
-    }
-
-    frame++;
-    requestAnimationFrame(drawCat);
+:root {
+    --bg: #1a1a1a;
+    --text: #e0e0e0;
+    --accent: #ff9ff3;
+    --secondary: #54a0ff;
+    --border: #333;
+    --pixel-size: 4px;
 }
 
-drawCat();
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'VT323', monospace;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+header {
+    grid-column: 1 / -1;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+h1 { font-size: 3.5rem; margin: 0; color: #fff; }
+.pixel-cat { color: var(--secondary); animation: bounce 2s infinite; }
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+article {
+    background: #2a2a2a;
+    border: 2px solid var(--border);
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+}
+
+article:hover {
+    transform: scale(1.03);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(255, 159, 243, 0.3);
+}
+
+article h2 { color: var(--secondary); font-size: 1.6rem; margin-top: 0; line-height: 1.2; }
+article .tag { 
+    background: var(--accent); 
+    color: #000; 
+    padding: 3px 10px; 
+    font-size: 1.2rem; 
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+article p { color: #aaa; font-size: 1.1rem; }
+
+aside {
+    text-align: center;
+    border: 4px solid var(--border);
+    padding: 1rem;
+    background: #000;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+#pixel-cat {
+    image-rendering: pixelated;
+    margin-bottom: 1rem;
+    filter: contrast(1.2);
+}
+
+.status { font-size: 1.5rem; color: var(--secondary); }
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@media (max-width: 768px) {
+    .container { grid-template-columns: 1fr; }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    background-color: #2a2a2a;
+    margin: 5% auto;
+    padding: 2rem;
+    border: 4px solid var(--accent);
+    width: 80%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 2.5rem;
+    float: right;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover { color: var(--accent); }
+
+.modal-body h1 { color: var(--secondary); font-size: 2.5rem; margin-bottom: 1rem; }
+.modal-body h2 { color: var(--accent); font-size: 1.8rem; margin-top: 2rem; margin-bottom: 0.5rem; }
+.modal-body p { line-height: 1.8; font-size: 1.3rem; margin-bottom: 1rem; }
+.modal-body code { background: #1a1a1a; padding: 2px 6px; border-radius: 3px; color: var(--secondary); }
+.modal-body pre { background: #1a1a1a; padding: 1rem; border-left: 4px solid var(--accent); overflow-x: auto; }
+.modal-body blockquote { border-left: 4px solid var(--secondary); margin: 1rem 0; padding-left: 1rem; color: #aaa; }
