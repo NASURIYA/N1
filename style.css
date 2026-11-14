@@ -4,7 +4,6 @@
     --accent: #ff9ff3;
     --secondary: #54a0ff;
     --border: #333;
-    --pixel-size: 4px;
 }
 
 body {
@@ -49,7 +48,6 @@ article {
     padding: 1.5rem;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
-    position: relative;
 }
 
 article:hover {
