@@ -3,88 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASURIYA // Booru Tech Index</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <title>NASURIYA | Pixel Tech Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Top Booru-Style Header -->
-    <header class="top-bar">
-        <div class="logo-area">
-            <a href="#" id="homeLink" class="site-logo">NASURIYA_BOORU</a>
-            <span class="version-tag">[v2.6 // HN-TECH-INDEX]</span>
-        </div>
-        <nav class="sub-nav">
-            <a href="#" class="nav-item active" data-view="posts">Posts (10)</a>
-            <a href="#" class="nav-item" data-view="gallery">Pixel Sprites</a>
-            <a href="#" class="nav-item" data-view="about">System Info</a>
-        </nav>
-    </header>
+    <div class="container">
+        <header>
+            <h1>NASURIYA<span class="pixel-cat">🐱</span></h1>
+            <p>Coding with Paws & Pixels</p>
+        </header>
 
-    <!-- Main Two-Column Booru Layout -->
-    <div class="layout-wrapper">
-        <!-- Left Sidebar: Search, Mascot & Tag Cloud -->
-        <aside class="sidebar">
-            <div class="sidebar-box mascot-box">
-                <div class="box-title">Live Daemon</div>
-                <canvas id="mascotCanvas" width="128" height="96"></canvas>
-                <div id="petStatus" class="status-text">idle // click to ping</div>
-            </div>
-
-            <div class="sidebar-box">
-                <div class="box-title">Search Index</div>
-                <input type="text" id="searchInput" placeholder="tag or keyword..." autocomplete="off">
-                <button id="clearBtn" class="booru-btn full-width">Reset Filter</button>
-            </div>
-
-            <div class="sidebar-box">
-                <div class="box-title">Tags</div>
-                <ul class="tag-list" id="tagList">
-                    <!-- Populated dynamically via JS -->
-                </ul>
-            </div>
-
-            <div class="sidebar-box stats-box">
-                <div class="box-title">Node Stats</div>
-                <p>Host: GitHub Pages</p>
-                <p>Stack: 3-File Vanilla</p>
-                <p>Articles: 10</p>
-            </div>
-        </aside>
-
-        <!-- Right Main Content Area -->
-        <main class="content-area">
-            <!-- Animated Pixel Banner -->
-            <div class="pixel-banner">
-                <canvas id="bannerCanvas" width="640" height="64"></canvas>
-            </div>
-
-            <!-- Article Feed View -->
-            <div id="feedView">
-                <div class="toolbar">
-                    <span id="resultCount">Showing 10 entries</span>
-                    <select id="sortSelect">
-                        <option value="newest">Sort: Newest</option>
-                        <option value="points">Sort: HN Points</option>
-                    </select>
-                </div>
-                <div id="articleList" class="article-list"></div>
-            </div>
-
-            <!-- Single Article Reader View -->
-            <div id="readerView" class="hidden">
-                <button id="backBtn" class="booru-btn"><< Back to Index</button>
-                <article class="full-article">
-                    <div class="article-meta-top" id="readerMeta"></div>
-                    <h1 id="readerTitle"></h1>
-                    <canvas id="articleArtCanvas" width="320" height="120"></canvas>
-                    <div id="readerBody" class="article-body"></div>
-                    <div class="tag-footer" id="readerTags"></div>
-                </article>
-            </div>
+        <main id="blog-feed">
+            <!-- Blog posts injected via JS -->
         </main>
-    </div>
 
-    <script src="script.js" defer></script>
+        <aside>
+            <canvas id="pixel-cat" width="200" height="200"></canvas>
+            <div class="status">Status: Coding 🐾</div>
+        </aside>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
