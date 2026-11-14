@@ -2,11 +2,18 @@ const blogFeed = document.getElementById('blog-feed');
 const canvas = document.getElementById('pixel-cat');
 const ctx = canvas.getContext('2d');
 
-// Mock Blog Data
+// Hacker News Style Articles
 const posts = [
-    { title: "Deploying to the Cloud", date: "Oct 12", tag: "DevOps" },
+    { title: "Rust vs C++ for System Programming", date: "Oct 12", tag: "DevOps" },
     { title: "Why I Love CSS Grid", date: "Sep 05", tag: "Frontend" },
-    { title: "JavaScript Async/Await", date: "Aug 22", tag: "Backend" }
+    { title: "JavaScript Async/Await Deep Dive", date: "Aug 22", tag: "Backend" },
+    { title: "Building a CLI Tool in Go", date: "Jul 14", tag: "Golang" },
+    { title: "The Future of WebAssembly", date: "Jun 30", tag: "WebTech" },
+    { title: "Optimizing React Performance", date: "May 18", tag: "React" },
+    { title: "Docker Networking Explained", date: "Apr 05", tag: "DevOps" },
+    { title: "Python for Data Science", date: "Mar 22", tag: "Data" },
+    { title: "Serverless Architecture Patterns", date: "Feb 14", tag: "Cloud" },
+    { title: "Understanding TCP Handshake", date: "Jan 08", tag: "Networking" }
 ];
 
 // Render Posts
